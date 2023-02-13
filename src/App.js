@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
+
+  const getSpellsRequest = async () => {
+    const response = await fetch('https://hp-api.onrender.com/api/spells');
+    const json = await response.json()
+    return json;
+  }
+
+  const onClick = async () => {
+    console.log(await getSpellsRequest())
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={onClick}>Get Data</button>
+
     </div>
   );
 }
